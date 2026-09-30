@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <meta
+      name="description"
+      content="МОСТ — демонстрационная витрина автомобилей из Китая с ориентиром цены под ключ до Владивостока."
+    />
+    <title>МОСТ — автомобили из Китая под ключ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Unbounded:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23c4452d'/%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body id="top">
+    <a class="skip" href="#catalog">К каталогу</a>
+    <div class="wrap">
+      <header class="site-header">
+        <a class="logo" href="#top" aria-label="МОСТ">МО<span aria-hidden="true">С</span>Т</a>
+        <nav aria-label="Разделы">
+          <a href="#catalog">Каталог</a>
+          <a href="#process">Как везём</a>
+          <a href="#price">Цена</a>
+          <a class="nav-cta" href="#request">Заявка</a>
+        </nav>
+      </header>
+
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Китай → Владивосток → Москва</p>
+          <h1>Машины из Китая под ключ</h1>
+          <p class="lede">
+            Новые и с пробегом. Сначала видео осмотра, потом оплата поставщику.
+            На карточке — ориентир цены до Владивостока: машина, дорога и сборы.
+          </p>
+          <div class="hero-actions">
+            <a class="primary" href="#catalog">Смотреть каталог</a>
+            <a class="ghost" href="#request">Оставить заявку</a>
+          </div>
+          <dl class="stats">
+            <div>
+              <dt>В каталоге</dt>
+              <dd id="stat-count">12</dd>
+            </div>
+            <div>
+              <dt>До Владивостока</dt>
+              <dd>25–40 дней</dd>
+            </div>
+            <div>
+              <dt>Старт цен</dt>
+              <dd id="stat-min">—</dd>
+            </div>
+          </dl>
+        </div>
+        <aside class="hero-aside" aria-label="Примеры из каталога">
+          <p class="aside-label">Три цены из каталога</p>
+          <div id="featured"></div>
+          <a class="aside-link" href="#catalog">Весь каталог</a>
+        </aside>
+      </section>
+
+      <section class="section" id="catalog">
+        <h2>Каталог</h2>
+        <p class="section-intro">
+          Цена на карточке — до Владивостока. Это снимок для примера, не наличие на складе и не счёт.
+        </p>
+        <div class="toolbar">
+          <div class="segment" role="group" aria-label="Состояние">
+            <button type="button" data-condition="all" aria-pressed="true">Все</button>
+            <button type="button" data-condition="new" aria-pressed="false">Новые</button>
+            <button type="button" data-condition="used" aria-pressed="false">С пробегом</button>
+          </div>
+          <label class="field">
+            Поиск
+            <input id="q" type="search" placeholder="Seal, Tank, Camry" autocomplete="off" />
+          </label>
+          <label class="field">
+            Бренд
+            <select id="brand"></select>
+          </label>
+          <label class="field">
+            Кузов
+            <select id="body"></select>
+          </label>
+          <label class="field">
+            Сортировка
+            <select id="sort">
+              <option value="turnkey-asc">Сначала дешевле</option>
+              <option value="turnkey-desc">Сначала дороже</option>
+              <option value="year-desc">Сначала новее</option>
+              <option value="mileage-asc">Сначала меньший пробег</option>
+            </select>
+          </label>
+        </div>
+        <p id="result-count" aria-live="polite"></p>
+        <div id="catalog-grid" class="grid"></div>
+        <p id="catalog-empty" class="empty" hidden>
+          Ничего не нашли.
+          <button type="button" id="reset-filters">Сбросить фильтры</button>
+        </p>
+      </section>
+
+      <section class="section" id="process">
+        <h2>Как везём</h2>
+        <p class="section-intro">Четыре шага от заявки до выдачи. Постановку на учёт делаете вы, пакет документов готовим мы.</p>
+        <ol class="steps">
+          <li>
+            <span>01</span>
+            <h3>Подбор</h3>
+            <p>Бюджет, город и тип кузова. В ответ — две-три машины, которые реально стоят в Китае.</p>
+          </li>
+          <li>
+            <span>02</span>
+            <h3>Проверка</h3>
+            <p>Фото, видео и для машин с пробегом — толщина ЛКП. Оплата поставщику после осмотра.</p>
+          </li>
+          <li>
+            <span>03</span>
+            <h3>Дорога</h3>
+            <p>Автовоз или море до Владивостока, затем таможня. Обычно 25–40 дней, не гарантия срока.</p>
+          </li>
+          <li>
+            <span>04</span>
+            <h3>Выдача</h3>
+            <p>Машина и документы. До Москвы считаем отдельно, в каталоге эта сумма не включена.</p>
+          </li>
+        </ol>
+      </section>
+
+      <section class="section" id="price">
+        <h2>Из чего цена</h2>
+        <div class="formula">
+          <p>
+            Курс для ориентира: <strong id="rate-value">12,5 ₽</strong> за юань, снимок
+            <span id="as-of">30 сентября 2026</span>.
+          </p>
+          <ol>
+            <li>Цена продавца в Китае, переведённая по этому курсу.</li>
+            <li>Логистика до Владивостока.</li>
+            <li>Таможня, утильсбор и сопутствующие платежи — оценочной суммой, не расчётом брокера.</li>
+          </ol>
+          <p>
+            До Москвы в ориентире ещё <strong id="moscow-extra">180&nbsp;000 ₽</strong>. Итог на карточке —
+            не оферта: его меняют курс, дата выпуска и комплектация.
+          </p>
+        </div>
+      </section>
+
+      <section class="section" id="request">
+        <div class="request-grid">
+          <div>
+            <h2>Заявка</h2>
+            <p class="section-intro">Напишите, что ищете. Форма пока не отправляет данные на сервер.</p>
+            <form id="request-form" class="form" novalidate>
+              <div class="form-row">
+                <label class="field">
+                  Имя
+                  <input id="client-name" name="name" autocomplete="name" required />
+                </label>
+                <label class="field">
+                  Телефон
+                  <input id="client-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required />
+                </label>
+              </div>
+              <label class="field">
+                Автомобиль
+                <select id="car-select" name="car">
+                  <option value="">Пока не выбрал</option>
+                </select>
+              </label>
+              <label class="field">
+                Куда везти
+                <select id="city" name="city">
+                  <option>Владивосток</option>
+                  <option>Москва</option>
+                  <option>Другой город</option>
+                </select>
+              </label>
+              <label class="field">
+                Комментарий
+                <textarea id="comment" name="comment" placeholder="Бюджет, год, что важно"></textarea>
+              </label>
+              <p id="form-error" class="form-error" role="alert"></p>
+              <button class="primary" type="submit">Оставить заявку</button>
+            </form>
+            <div id="form-success" hidden></div>
+          </div>
+          <aside class="next">
+            <h3>Дальше по заявке</h3>
+            <ol>
+              <li>Уточняем бюджет и город получения.</li>
+              <li>Присылаем 2–3 машины со ссылкой на осмотр.</li>
+              <li>Считаем итог под Владивосток или Москву уже по живому курсу.</li>
+            </ol>
+          </aside>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+        <strong>МОСТ</strong>
+        <p>
+          Демонстрационная витрина. Цены и характеристики — ориентир на 30 сентября 2026, не публичная оферта.
+          Заявки с сайта никуда не отправляются.
+        </p>
+      </footer>
+    </div>
+
+    <dialog id="car-dialog" aria-labelledby="dialog-title"></dialog>
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
