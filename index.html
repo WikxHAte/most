@@ -12,11 +12,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Unbounded:wght@500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23c4452d'/%3E%3C/svg%3E" />
-    <link rel="stylesheet" href="css/styles.css?v=6" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230071e3'/%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="css/styles.css?v=14" />
   </head>
   <body id="top">
     <a class="skip" href="#picker">К подбору</a>
@@ -24,41 +24,23 @@
       <header class="site-header">
         <a class="logo" href="index.html" aria-label="МОСТ — на главную">МО<span aria-hidden="true">С</span>Т</a>
         <nav aria-label="Разделы">
+          <a href="index.html" aria-current="page">Главная</a>
           <a href="catalog.html">Каталог</a>
-          <a href="#process">Как везём</a>
-          <a href="#price">Цена</a>
-          <a href="#contacts">Контакты</a>
+          <a href="process.html">Как везём</a>
+          <a href="price.html">Цена</a>
+          <a href="contacts.html">Контакты и заявка</a>
           <a class="nav-cta" href="https://t.me/wiKxhaTe" target="_blank" rel="noopener">Telegram @wiKxhaTe</a>
         </nav>
       </header>
 
-      <section class="hero home-hero">
-        <div>
-          <p class="eyebrow">Китай → Владивосток → Москва</p>
-          <h1>Машины из Китая под ключ</h1>
-          <p class="lede">
-            Новые и с пробегом. Сначала видео осмотра, потом оплата поставщику.
-            В каталоге — ориентир цены до Владивостока: машина, дорога и сборы.
-          </p>
-          <dl class="stats">
-            <div>
-              <dt>В каталоге</dt>
-              <dd id="stat-count">18</dd>
-            </div>
-            <div>
-              <dt>Марок</dt>
-              <dd id="stat-brands">13</dd>
-            </div>
-            <div>
-              <dt>Старт цен</dt>
-              <dd id="stat-min">—</dd>
-            </div>
-          </dl>
-        </div>
+      <section class="home-hero">
+        <p class="eyebrow">Китай → Владивосток → Москва</p>
+        <h1>Машины из&nbsp;Китая.<br />Под ключ.</h1>
+        <p class="lede">
+          Новые и с пробегом. Сначала видео осмотра, потом оплата поставщику.
+        </p>
 
-        <form id="picker" class="picker" action="catalog.html" aria-labelledby="picker-title">
-          <p class="aside-label">Подбор автомобиля</p>
-          <h2 id="picker-title">Выберите марку и модель</h2>
+        <form id="picker" class="picker" action="catalog.html" aria-label="Подбор автомобиля">
           <label class="field">
             Марка
             <select id="pick-brand" name="brand"></select>
@@ -68,73 +50,32 @@
             <select id="pick-model" name="model" disabled></select>
           </label>
           <button id="pick-submit" class="primary" type="submit">Смотреть весь каталог</button>
-          <p class="picker-note">Выберите модель — откроем каталог только с ней.</p>
         </form>
+        <p class="picker-note">Выберите модель — откроем каталог только с ней.</p>
+
+        <img class="hero-image" src="img/hero.jpg" alt="Автомобили из каталога" />
+
+        <dl class="stats">
+          <div>
+            <dt>В каталоге</dt>
+            <dd id="stat-count">18</dd>
+          </div>
+          <div>
+            <dt>Марок</dt>
+            <dd id="stat-brands">13</dd>
+          </div>
+          <div>
+            <dt>Старт цен</dt>
+            <dd id="stat-min">—</dd>
+          </div>
+          <div>
+            <dt>До Владивостока</dt>
+            <dd>25–40 дней</dd>
+          </div>
+        </dl>
       </section>
 
-      <section class="section" id="brands">
-        <div class="section-head">
-          <h2>Марки в каталоге</h2>
-          <a class="section-link" href="catalog.html">Весь каталог</a>
-        </div>
-        <div id="brand-grid" class="brand-grid"></div>
-      </section>
-
-      <section class="section" id="popular">
-        <div class="section-head">
-          <h2>Популярное сейчас</h2>
-          <a class="section-link" href="catalog.html">Все автомобили</a>
-        </div>
-        <div id="popular-grid" class="grid"></div>
-      </section>
-
-      <section class="section" id="process">
-        <h2>Как везём</h2>
-        <p class="section-intro">Четыре шага от заявки до выдачи. Постановку на учёт делаете вы, пакет документов готовим мы.</p>
-        <ol class="steps">
-          <li>
-            <span>01</span>
-            <h3>Подбор</h3>
-            <p>Бюджет, город и тип кузова. В ответ — две-три машины, которые реально стоят в Китае.</p>
-          </li>
-          <li>
-            <span>02</span>
-            <h3>Проверка</h3>
-            <p>Фото, видео и для машин с пробегом — толщина ЛКП. Оплата поставщику после осмотра.</p>
-          </li>
-          <li>
-            <span>03</span>
-            <h3>Дорога</h3>
-            <p>Автовоз или море до Владивостока, затем таможня. Обычно 25–40 дней, не гарантия срока.</p>
-          </li>
-          <li>
-            <span>04</span>
-            <h3>Выдача</h3>
-            <p>Машина и документы. До Москвы считаем отдельно, в каталоге эта сумма не включена.</p>
-          </li>
-        </ol>
-      </section>
-
-      <section class="section" id="price">
-        <h2>Из чего цена</h2>
-        <div class="formula">
-          <p>
-            Курс для ориентира: <strong id="rate-value">12,5 ₽</strong> за юань, снимок
-            <span id="as-of">30 сентября 2026</span>.
-          </p>
-          <ol>
-            <li>Цена продавца в Китае, переведённая по этому курсу.</li>
-            <li>Логистика до Владивостока.</li>
-            <li>Таможня, утильсбор и сопутствующие платежи — оценочной суммой, не расчётом брокера.</li>
-          </ol>
-          <p>
-            До Москвы в ориентире ещё <strong id="moscow-extra">180&nbsp;000 ₽</strong>. Итог в каталоге —
-            не оферта: его меняют курс, дата выпуска и комплектация.
-          </p>
-        </div>
-      </section>
-
-      <footer class="site-footer" id="contacts">
+      <footer class="site-footer">
         <div class="footer-contact">
           <div>
             <strong>МОСТ</strong>
@@ -157,8 +98,8 @@
       </footer>
     </div>
 
-    <script src="js/data.js?v=6"></script>
-    <script src="js/common.js?v=6"></script>
-    <script src="js/home.js?v=6"></script>
+    <script src="js/data.js?v=14"></script>
+    <script src="js/common.js?v=14"></script>
+    <script src="js/home.js?v=14"></script>
   </body>
 </html>

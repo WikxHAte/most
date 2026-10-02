@@ -49,11 +49,9 @@
   if (car.rangeNote) specs.push(["Запас хода", car.rangeNote]);
 
   root.innerHTML = `<section class="car-hero">
-      <div class="car-visual" style="background:${ui.TONE[car.brand] || "#171512"}">
+      <div class="car-visual">
+        <img src="${esc(ui.carImage(car))}" alt="${esc(title)}" onerror="this.remove()" />
         <span class="badge ${car.condition}">${esc(ui.conditionLabel(car))}</span>
-        <span class="car-visual-brand">${esc(car.brand)}</span>
-        <span class="car-visual-model">${esc(car.model)}</span>
-        <span class="visual-meta">${esc(ui.BODY[car.body])} · ${esc(car.city)}</span>
       </div>
       <div class="car-summary">
         <p class="eyebrow">${esc(car.brand)} · ${esc(ui.BODY[car.body])}</p>
@@ -107,49 +105,5 @@
     document.getElementById("similar-wrap").hidden = true;
   }
 
-  const form = document.getElementById("request-form");
-  const formError = document.getElementById("form-error");
-  const formSuccess = document.getElementById("form-success");
-
-  form.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const name = document.getElementById("client-name").value.trim();
-    const phone = document.getElementById("client-phone").value.trim();
-    const city = document.getElementById("city").value;
-    const comment = document.getElementById("comment").value.trim();
-
-    if (name.length < 2) {
-      formError.textContent = "Напишите, как к вам обращаться.";
-      document.getElementById("client-name").focus();
-      return;
-    }
-    if (phone.replace(/\D/g, "").length < 10) {
-      formError.textContent = "Нужен телефон: не меньше 10 цифр.";
-      document.getElementById("client-phone").focus();
-      return;
-    }
-
-    formError.textContent = "";
-    form.hidden = true;
-    formSuccess.hidden = false;
-    formSuccess.innerHTML = `<h3>Заявка собрана</h3>
-      <p>На сервер она не уходит: это витрина без приёма заявок. Отправьте эти данные в
-        <a href="${ui.TELEGRAM_URL}" target="_blank" rel="noopener">Telegram менеджера</a> — так заявка точно дойдёт.</p>
-      <dl class="spec-list">
-        <div><dt>Имя</dt><dd>${esc(name)}</dd></div>
-        <div><dt>Телефон</dt><dd>${esc(phone)}</dd></div>
-        <div><dt>Автомобиль</dt><dd>${esc(title)}, ${car.year}</dd></div>
-        <div><dt>Город</dt><dd>${esc(city)}</dd></div>
-        ${comment ? `<div><dt>Комментарий</dt><dd>${esc(comment)}</dd></div>` : ""}
-      </dl>
-      <button type="button" class="primary" id="another">Новая заявка</button>`;
-  });
-
-  formSuccess.addEventListener("click", (event) => {
-    if (event.target.id !== "another") return;
-    form.reset();
-    form.hidden = false;
-    formSuccess.hidden = true;
-    document.getElementById("client-name").focus();
-  });
+  ui.initRequestForm(() => `${title}, ${car.year}`);
 })();

@@ -15,22 +15,6 @@
     minivan: "Минивэн",
   };
   const BODY_ORDER = ["sedan", "liftback", "crossover", "suv", "minivan"];
-  const TONE = {
-    BYD: "#13241f",
-    Geely: "#152033",
-    Chery: "#2a1414",
-    Tank: "#1c2218",
-    "Li Auto": "#241c14",
-    Zeekr: "#1a1a1a",
-    Changan: "#141c2e",
-    Exeed: "#241820",
-    Toyota: "#2a1614",
-    Hongqi: "#2a1216",
-    Voyah: "#17141f",
-    BMW: "#121b2a",
-    "Mercedes-Benz": "#1c1c1f",
-  };
-
   function esc(value) {
     return String(value)
       .replace(/&/g, "&amp;")
@@ -98,16 +82,18 @@
     return "car.html?id=" + encodeURIComponent(car.id);
   }
 
+  function carImage(car) {
+    return "img/" + encodeURIComponent(car.id) + ".jpg";
+  }
+
   function cardHtml(car) {
-    const tone = TONE[car.brand] || "#171512";
     return `<a class="card" href="${esc(carUrl(car))}">
-      <span class="visual" style="background:${tone}">
+      <span class="visual">
+        <img src="${esc(carImage(car))}" alt="${esc(carTitle(car))}" loading="lazy" onerror="this.remove()" />
         <span class="badge ${car.condition}">${esc(conditionLabel(car))}</span>
-        <span class="visual-brand">${esc(car.brand)}</span>
-        <span class="visual-meta">${esc(BODY[car.body])} · ${esc(car.city)}</span>
       </span>
       <span class="card-body">
-        <span class="kicker">${car.year} · ${esc(mileageLabel(car))}</span>
+        <span class="kicker">${esc(car.brand)} · ${car.year} · ${esc(mileageLabel(car))}</span>
         <span class="model">${esc(car.model)}</span>
         <span class="trim">${esc(car.trim)} · ${esc(car.fuel)} · ${esc(car.drive)}</span>
         <span class="card-foot">
@@ -133,6 +119,56 @@
         return `<a href="${esc(item.href)}">${esc(item.label)}</a>`;
       })
       .join('<span class="crumb-sep" aria-hidden="true">/</span>');
+  }
+
+  function initRequestForm(carLine) {
+    const form = document.getElementById("request-form");
+    const formError = document.getElementById("form-error");
+    const formSuccess = document.getElementById("form-success");
+    const nameInput = document.getElementById("client-name");
+    const phoneInput = document.getElementById("client-phone");
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const name = nameInput.value.trim();
+      const phone = phoneInput.value.trim();
+      const city = document.getElementById("city").value;
+      const comment = document.getElementById("comment").value.trim();
+
+      if (name.length < 2) {
+        formError.textContent = "Напишите, как к вам обращаться.";
+        nameInput.focus();
+        return;
+      }
+      if (phone.replace(/\D/g, "").length < 10) {
+        formError.textContent = "Нужен телефон: не меньше 10 цифр.";
+        phoneInput.focus();
+        return;
+      }
+
+      formError.textContent = "";
+      form.hidden = true;
+      formSuccess.hidden = false;
+      formSuccess.innerHTML = `<h3>Заявка собрана</h3>
+        <p>На сервер она не уходит: это витрина без приёма заявок. Отправьте эти данные в
+          <a href="${TELEGRAM_URL}" target="_blank" rel="noopener">Telegram менеджера</a> — так заявка точно дойдёт.</p>
+        <dl class="spec-list">
+          <div><dt>Имя</dt><dd>${esc(name)}</dd></div>
+          <div><dt>Телефон</dt><dd>${esc(phone)}</dd></div>
+          <div><dt>Автомобиль</dt><dd>${esc(carLine())}</dd></div>
+          <div><dt>Город</dt><dd>${esc(city)}</dd></div>
+          ${comment ? `<div><dt>Комментарий</dt><dd>${esc(comment)}</dd></div>` : ""}
+        </dl>
+        <button type="button" class="primary" id="another">Новая заявка</button>`;
+    });
+
+    formSuccess.addEventListener("click", (event) => {
+      if (event.target.id !== "another") return;
+      form.reset();
+      form.hidden = false;
+      formSuccess.hidden = true;
+      nameInput.focus();
+    });
   }
 
   document.querySelectorAll("[data-copy]").forEach((button) => {
@@ -161,7 +197,7 @@
     TELEGRAM_URL,
     BODY,
     BODY_ORDER,
-    TONE,
+    carImage,
     esc,
     rub,
     cny,
@@ -179,5 +215,6 @@
     cardHtml,
     fillSelect,
     crumbsHtml,
+    initRequestForm,
   };
 })();

@@ -62,25 +62,4 @@
   document.getElementById("stat-brands").textContent = String(ui.brands().length);
   document.getElementById("stat-min").textContent = "от " + ui.rub(Math.min(...prices));
 
-  document.getElementById("brand-grid").innerHTML = ui
-    .brands()
-    .map((brand) => {
-      const cars = data.cars.filter((car) => car.brand === brand);
-      const min = Math.min(...cars.map(ui.turnkey));
-      return `<a class="brand-tile" href="${ui.esc(ui.catalogUrl(brand))}">
-        <span class="brand-name">${ui.esc(brand)}</span>
-        <span class="brand-models">${ui.esc(ui.models(brand).join(" · "))}</span>
-        <span class="brand-meta">${cars.length} ${ui.carsWord(cars.length)} · от ${ui.esc(ui.rub(min))}</span>
-      </a>`;
-    })
-    .join("");
-
-  document.getElementById("popular-grid").innerHTML = data.cars
-    .filter((car) => car.featured)
-    .map(ui.cardHtml)
-    .join("");
-
-  document.getElementById("rate-value").textContent = ui.rateFmt.format(data.rate) + " ₽";
-  document.getElementById("as-of").textContent = data.asOf;
-  document.getElementById("moscow-extra").textContent = ui.rub(data.moscowExtraRub);
 })();
