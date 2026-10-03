@@ -52,9 +52,9 @@ a { color: inherit; }
   top: 0;
   z-index: 10;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
-  gap: 10px 28px;
+  gap: 10px 44px;
   flex-wrap: wrap;
   min-height: 52px;
   margin: 0 calc(50% - 50vw);
@@ -209,6 +209,7 @@ h3 { letter-spacing: -0.015em; }
 .page-head .eyebrow { font-size: 1rem; }
 .page-head h1 { font-size: clamp(2.4rem, 5vw, 3.8rem); margin-bottom: 12px; }
 .page-head .hero-actions { margin-top: 20px; }
+.page-note { margin: 0; max-width: 40rem; color: var(--muted); font-size: 0.85rem; line-height: 1.5; }
 
 .section { padding: 40px 0 12px; }
 .section-intro { margin: 0 0 20px; color: var(--muted); max-width: 46rem; }
